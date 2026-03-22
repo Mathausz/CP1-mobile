@@ -27,22 +27,22 @@ export default function History() {
     carregarHistorico();
   }, []);
 
-  // ✅ FUNÇÃO CORRIGIDA (cria o arquivo automaticamente na primeira vez)
+ 
   const carregarHistorico = async () => {
     try {
       const fileUri = documentDirectory + "historico_formularios.json";
 
-      // Verifica se o arquivo existe
+     
       const fileInfo = await FileSystem.getInfoAsync(fileUri);
 
       if (!fileInfo.exists) {
-        // Cria o arquivo vazio pela primeira vez
+        
         await FileSystem.writeAsStringAsync(fileUri, JSON.stringify([]));
         setHistorico([]);
         return;
       }
 
-      // Se existe, carrega normalmente
+    
       const conteudo = await FileSystem.readAsStringAsync(fileUri);
       setHistorico(JSON.parse(conteudo));
     } catch (error) {
